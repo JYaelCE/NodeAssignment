@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Students Management</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+	<link rel="stylesheet" href="./css/bookListing.css" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+	<div class="header">
+		<div class="row">
+			<div class="col-9 title">
+				<h5>Students Management</h5>
+			</div>
+			<div class="col-3 logout">
+				<a href="logout">
+					<button type="button" class="btn btn-outline-danger">
+						Logout
+					</button>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<!--Content-->
+		<div class="content">
+			<div class="row">
+				<div class="col-9 title">
+					<b>
+						<h3>Students Listing</h3>
+					</b>
+				</div>
+				<div class="col-3 addBook">
+					<a href="addStudent"><button type="button" class="btn btn-primary">
+							Add Student
+						</button></a>
+				</div>
+			</div>
+		</div>
+
+		<!--Table-->
+		<div class="col-12 tableContent" id="tableDiv">
+			<table class="table table-bordered" id="booksTable">
+				<tr>
+					<th style="width: 20%">Roll No.</th>
+					<th style="width: 20%">Name</th>
+					<th style="width: 20%">Date of Birth</th>
+					<th style="width: 20%">Score</th>
+					<th style="width: 20%">Actions</th>
+				</tr>
+				<tbody>
+					<%if(students[0].id != null){%>
+						<% students.forEach( student=>{ %>
+							<tr>
+								<td>
+									<%= student.id %>
+								</td>
+								<td>
+									<%= student.name %>
+								</td>
+								<td>
+									<%= student.birthday %>
+								</td>
+								<td>
+									<%= student.score %>
+								</td>
+								<td>
+									<form action="editStudent" method="get">
+										<input type='hidden' name='studentId' id='studentId' value=<%=student.id %> />
+										<button class="btn">
+											<i class="material-icons">edit</i>
+										</button>
+									</form>
+									<form action="deleteStudent" method="get">
+										<input type='hidden' name='studentId' id='studentId' value=<%=student.id %> />
+										<button class="btn">
+											<i class="material-icons">delete</i>
+										</button>
+									</form>
+								</td>
+							</tr>
+							<%});%>
+								<%}%>
+									</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<div class="footer"></div>
+
+	<!--Bootstrap Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>
